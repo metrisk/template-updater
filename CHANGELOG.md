@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/metrisk/template-updater/compare/v1.0.0...v1.0.1) (2021-02-25)
+
+
+### Bug Fixes
+
+* **script:** file array ([0442612](https://github.com/metrisk/template-updater/commit/044261280b35c98f71e209e39a81b3e4cc624201))
+
 ## 1.0.0 (2021-02-25)
 
 
