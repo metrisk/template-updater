@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "release": "standard-version"
+    "release": "standard-version",
+    "build": "ncc build index.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "@actions/exec": "1.0.4"
   },
   "devDependencies": {
+    "@vercel/ncc": "0.27.0",
     "commitizen": "4.2.3",
     "cz-conventional-changelog": "3.3.0",
     "standard-version": "9.1.1"

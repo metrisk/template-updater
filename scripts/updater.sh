@@ -48,7 +48,6 @@ IFS=',' read -r -a files <<<"$2"
 echo "Fetching the upstream data"
 git fetch upstream main
 branch="main"
-echo "HOWDY HO!"
 
 # Checks for the branch name 'update-teamplate-settings'
 # Use the existing one if there
@@ -60,6 +59,10 @@ if [[ $(git rev-parse --verify "$5") ]]; then
   branch=$5
 fi
 
+for file in "${files[@]}"; do
+  echo "$file"
+done
+
 updated=false
 # Loop through the template files and diff them
 # On the first file with a diff, then the files are checked out of the upstream branch
@@ -67,7 +70,6 @@ updated=false
 # The changes are committed and pushed up.
 for file in "${files[@]}"; do
   echo "$file"
-  echo "$branch"
   if [[ ! $(git diff upstream/main "$branch" --quiet -- "$file") ]]; then
     if [ "$branch" = "main" ]; then
       echo "checking out branch $5"
