@@ -1,0 +1,29 @@
+{
+  "name": "template-updater",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/metrisk/template-updater.git"
+  },
+  "keywords": [],
+  "author": "Metrisk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/metrisk/template-updater/issues"
+  },
+  "homepage": "https://github.com/metrisk/template-updater#readme",
+  "dependencies": {
+    "@actions/core": "1.2.6",
+    "@actions/exec": "1.0.4"
+  },
+  "devDependencies": {
+    "commitizen": "4.2.3",
+    "cz-conventional-changelog": "3.3.0",
+    "standard-version": "9.1.1"
+  }
+}

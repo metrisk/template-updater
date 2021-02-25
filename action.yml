@@ -1,0 +1,28 @@
+name: Template Updater
+description: Update child of template repository with changes to the template.
+inputs:
+  template_repo:
+    description: The name of the template repository, e.g. 'metrisk/typescript-template'
+    default: "metrisk/typescript-template"
+    required: true
+  files_to_update:
+    description: The files you want updating from the template repository
+    required: true
+  username:
+    description: The name of the user who will be making the changes
+    default: "metrisk-bot"
+    required: false
+  email:
+    description: The email of the user who will be making the changes (must match that of the ssh key)
+    default: "tech.accounts@metrisk.com"
+    required: false
+  branch_name:
+    description: The branch the changes will be pushed to
+    default: "update-template-settings"
+    required: false
+outputs:
+  updated:
+    description: Boolean value of if the files have been updated or not
+runs:
+  using: node12
+  main: dist/index.js
