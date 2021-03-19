@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/metrisk/template-updater/compare/v1.0.1...v1.1.0) (2021-03-19)
+
+
+### Features
+
+* update npm Dev Dependencies ([b728c4b](https://github.com/metrisk/template-updater/commit/b728c4b94c0375c3073c5151a54aac03e2afe467)), closes [#4](https://github.com/metrisk/template-updater/issues/4)
+
 ### [1.0.1](https://github.com/metrisk/template-updater/compare/v1.0.0...v1.0.1) (2021-02-25)
 
 
