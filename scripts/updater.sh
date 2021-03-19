@@ -59,11 +59,37 @@ if [[ $(git rev-parse --verify "$5") ]]; then
   branch=$5
 fi
 
-for file in "${files[@]}"; do
-  echo "$file"
+updated=false
+
+repo_dev_deps=()
+upstream_dev_deps=()
+
+# Get the current repos dev dependencies
+while read -r value; do
+  repo_dev_deps+=("$value")
+done < <(jq -c '.devDependencies | keys | .[]' ./package.json)
+
+# Get the upstream package.json and create temp file
+git show upstream/main:package.json >temp.json
+
+# Get the upstream dev dependencies
+while read -r value; do
+  upstream_dev_deps+=("$value")
+done < <(jq -c '.devDependencies | keys | .[]' ./temp.json)
+
+# Remove the temp file
+rm temp.json
+
+# Check to see if the upstream dev dependencies are in the current repo
+# dev dependencies. If not, then install them
+for dep in "${upstream_dev_deps[@]}"; do
+  if [[ ! "${repo_dev_deps[*]}" =~ ${dep} ]]; then
+    echo "$dep is missing, installing"
+    npm install -DE "$dep"
+    updated=true
+  fi
 done
 
-updated=false
 # Loop through the template files and diff them
 # On the first file with a diff, then the files are checked out of the upstream branch
 # The upstream changes are accepted in the event of a conflict
@@ -79,15 +105,20 @@ for file in "${files[@]}"; do
       echo "Grabbing file: $update"
       git checkout --theirs upstream/main -- "$update" || true
     done
-    echo "Committing changes"
-    git commit -am "chore: config files updated"
-    git push origin -u "$5" --force
     updated=true
     break
   fi
 done
 
+if $updated; then
+  echo "Committing changes"
+  git commit -am "chore: config files updated"
+  git push origin -u "$5" --force
+fi
+
+# Remove the upstream
+git remote rm upstream
+
 echo "$updated"
 echo "$GITHUB_REPOSITORY"
-git remote rm upstream
 echo "::set-output name=updated::$updated"

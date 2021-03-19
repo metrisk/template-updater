@@ -5,7 +5,7 @@ const path = require('path')
 async function run () {
   try {
     const templateRepo = core.getInput('template_repo')
-    const files = core.getInput('files_to_update').replace(/\n|\r/gm, "")
+    const files = core.getInput('files_to_update').replace(/\n|\r/gm, '')
     const username = core.getInput('username')
     const email = core.getInput('email')
     const branchName = core.getInput('branch_name')
