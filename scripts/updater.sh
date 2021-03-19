@@ -67,7 +67,7 @@ upstream_dev_deps=()
 # Get the current repos dev dependencies
 while read -r value; do
   repo_dev_deps+=("$value")
-done < <(jq -c '.devDependencies | keys | .[]' ./package.json)
+done < <(jq -r '.devDependencies | keys | .[]' ./package.json)
 
 # Get the upstream package.json and create temp file
 git show upstream/main:package.json >temp.json
@@ -75,7 +75,7 @@ git show upstream/main:package.json >temp.json
 # Get the upstream dev dependencies
 while read -r value; do
   upstream_dev_deps+=("$value")
-done < <(jq -c '.devDependencies | keys | .[]' ./temp.json)
+done < <(jq -r '.devDependencies | keys | .[]' ./temp.json)
 
 # Remove the temp file
 rm temp.json
