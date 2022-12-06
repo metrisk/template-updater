@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@vercel/ncc": "0.28.6",
-    "commitizen": "4.2.4",
+    "commitizen": "4.2.6",
     "cz-conventional-changelog": "3.3.0",
     "standard-version": "9.3.1"
   }
